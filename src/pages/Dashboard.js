@@ -1,12 +1,23 @@
 import React from 'react';
-import { Info, Repos, User, Search, Navbar } from '../components';
+import styled from 'styled-components';
+import { Info, Repos, User, Search, Navbar, Header } from '../components';
 import Loader from '../components/Loader';
 import { GithubContext } from '../context/context';
+
+const Wrapper = styled.main`
+  height: 100vh;
+`;
+
 const Dashboard = () => {
   return (
-    <main>
-      <h2>Dashboard Page</h2>
-    </main>
+    <Wrapper>
+      <Navbar />
+      <Header />
+      <Search />
+      <Info />
+      <User />
+      <Repos />
+    </Wrapper>
   );
 };
 
