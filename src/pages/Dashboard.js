@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Info, Repos, User, Search, Navbar, Header } from '../components';
 import Loader from '../components/Loader';
@@ -9,16 +9,17 @@ const Wrapper = styled.main`
 `;
 
 const Dashboard = () => {
+
   return (
-    <Wrapper>
-      <Navbar />
-      <Header />
-      <Search />
-      <Info />
-      <User />
-      <Repos />
-    </Wrapper>
-  );
-};
+      <Wrapper>
+        {/* <Navbar />
+        <Header />*/}
+        <Search />
+        <Info />
+        <User />
+        <Repos />
+      </Wrapper>
+    ) 
+  }
 
 export default Dashboard;

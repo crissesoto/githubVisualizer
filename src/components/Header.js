@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { GithubContext } from '../context/context';
+
 import {GoLocation} from "react-icons/go"
 import {BsCalendar} from "react-icons/bs"
+
+
+const Header = () => {
+    const user = useContext(GithubContext).currentUserProfile;
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    
+    return (
+        <Wrapper>
+            {
+                user && (
+                <StyledDiv>                                   
+                    <div className="avatar"><img src={user.avatar_url} alt="avatar" /></div>
+                    <h1>{user.name}</h1>
+                    <p>{user.bio}</p>
+                    <h3><Link to={user.html_url} target="_blank" rel="noopener noreferrer">{`@${user.login}`}</Link></h3>
+                    <div className="info">
+                        <span className="info__item"><GoLocation/>{user.location}</span>
+                        <span className="info__item"><BsCalendar/>{new Date(user.created_at).toLocaleDateString("en-BE", options)}</span>
+                    </div>
+                </StyledDiv>
+                )
+            }
+        </Wrapper>    
+    )
+}
+
 
 const Wrapper = styled.section`
     padding: 3rem 5rem 6rem;
@@ -21,7 +49,7 @@ const StyledDiv = styled.div`
     flex-direction: column;
     text-align: center;
 
-    div.avater {
+    div.avatar {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,30 +70,14 @@ const StyledDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 1rem 0.5rem;
+    margin: 0px 0.5rem 0.5rem;
     white-space: nowrap;
 
         svg{
-            margin-right: 10px;
+            margin-right: 8px;
         }
     }
 
 `;
-
-const Header = () => {
-    return (
-        <Wrapper>
-            <StyledDiv>
-                <div class="avatar"><img src="" alt="avatar" /></div>
-                <h1>Crisse Soto</h1>
-                <h2><Link to="/" target="_blank" rel="noopener noreferrer">@crissesoto</Link></h2>
-                <div class="info">
-                    <span class="info__item"><GoLocation/>Ghent</span>
-                    <span class="info__item"><BsCalendar/>Joined January 24, 2019</span>
-                </div>
-            </StyledDiv>
-        </Wrapper>    
-    )
-}
 
 export default Header;
