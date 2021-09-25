@@ -26,12 +26,32 @@ const GithubProvider = ({children}) => {
         setIsLoading(true);
 
         // fetch & set user or set error
-        const response = await axios(`${rootUrl}/users/${user}`).catch((error) => console.log(error));
-
-        console.log(response)
+        const response = await axios(`${rootUrl}/users/${user}`).catch((error) => console.log(error));        
         
         if (response) {
+            console.log(response.data)
             setGithubUser(response.data)
+            const {followers_url, repos_url} = response.data;
+
+            // Fetch repos of the user
+            const repos = axios(`${repos_url}?per_page=100`)
+
+            // Fetch followers of the user
+            const followers = axios(`${followers_url}?per_page=100`)
+
+            await Promise.allSettled([repos, followers])
+                .then((data) => {
+                    const [repos, followers] = data;
+                    const status = "fulfilled";
+
+                    if (repos.status === status) {
+                        setRepos(repos.value.data)
+                    }
+                    if (followers.status === status) {
+                        setFollowers(followers.value.data)
+                    }
+                }).catch((error) => console.log(error))
+
         }else {
             toggleError(true, "User not found, please try again.")
         }

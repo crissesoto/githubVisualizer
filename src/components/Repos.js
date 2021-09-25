@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
+import ReposDisplay from './ReposDisplay';
 import { GithubContext } from '../context/context';
 import { Pie3D, Column3D, Bar3D, Doughnut2D } from './Charts';
 
@@ -59,14 +60,15 @@ const Repos = () => {
   
   return (
     <section className="section">
-    {
       <Wrapper className="section-center">
         <Pie3D data={mostUsed}/>
         <Column3D data={forks}/>
         <Bar3D data={stars} />
         <Doughnut2D data={mostPopular} />
       </Wrapper>
-    }
+      <div className="section-center">
+        <ReposDisplay  data={repos} />
+      </div>
     </section>
   );
 };
@@ -75,6 +77,7 @@ const Wrapper = styled.div`
   display: grid;
   justify-items: center;
   gap: 2rem;
+  margin-bottom: 50px;
   @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
   }

@@ -163,6 +163,33 @@ p {
   position: relative;
 }
 
+.title-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title-section button {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 20px;
+  background-color: var(--clr-primary-5);
+  color: var(--clr-white);
+  font-weight: 700;
+  padding: 10px 15px;
+}
+
+.title-section button:hover,
+.title-section button:focus {
+  background-color: var(--clr-grey-1dark);
+  outline: 0;
+}
+
+.title {
+  font-size: 2rem;
+}
+
 .nav-section {
   background-color: #272727
 }
