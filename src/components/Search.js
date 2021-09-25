@@ -1,9 +1,49 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
 import { GithubContext } from '../context/context';
+
 const Search = () => {
-  return <h2>search component</h2>;
+
+  const {requests, error, searchGithubUser, isLoading} = useContext(GithubContext);
+
+  const [user, setUser] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(user)
+
+    if (user) {
+      searchGithubUser(user)
+    }
+  }
+
+
+  return (
+  <section className='section'>
+    <Wrapper className='section-center'>
+      {error.show && (
+        <ErrorWrapper>
+          <p>{error.msg}</p>
+        </ErrorWrapper>
+      )}
+      <form onSubmit={handleSubmit}>
+        <div className='form-control'>
+          <input
+            type='text'
+            placeholder={isLoading ? 'loading user...' : 'enter github user'}
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+          />
+          {
+            requests > 0 && !isLoading &&<button type='submit'><MdSearch /></button>
+          }
+        </div>
+      </form>
+      <h5>requests : {requests} / 60</h5>
+    </Wrapper>
+  </section>
+  );
 };
 
 const Wrapper = styled.div`
@@ -11,20 +51,23 @@ const Wrapper = styled.div`
   display: grid;
   gap: 1rem 1.75rem;
   @media (min-width: 768px) {
-    grid-template-columns: 1fr max-content;
+    grid-template-columns: 1fr;
     align-items: center;
-    h3 {
-      padding: 0 0.5rem;
-    }
+    justify-content: center;
+
   }
   .form-control {
     background: var(--clr-white);
     display: grid;
     align-items: center;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     column-gap: 0.5rem;
     border-radius: 5px;
     padding: 0.5rem;
+    width: 100%;
+    margin-top: -40px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
     input {
       border-color: transparent;
       outline-color: var(--clr-grey-10);
@@ -38,23 +81,20 @@ const Wrapper = styled.div`
       letter-spacing: var(--spacing);
     }
     button {
-      border-radius: 5px;
-      border-color: transparent;
-      padding: 0.25rem 0.5rem;
-      text-transform: capitalize;
-      letter-spacing: var(--spacing);
-      background: var(--clr-primary-5);
-      color: var(--clr-white);
-      transition: var(--transition);
-      cursor: pointer;
+      border: none;
+      background-color: transparent;
+
+      svg {
+      color: var(--clr-grey-5);
+      font-size: 1.4rem;
+      transition: transform .2s;
+      margin-right: 10px;
+
       &:hover {
-        background: var(--clr-primary-8);
         color: var(--clr-primary-1);
+        transform: scale(1.2);
       }
     }
-
-    svg {
-      color: var(--clr-grey-5);
     }
     input,
     button,
@@ -69,22 +109,21 @@ const Wrapper = styled.div`
       }
     }
   }
-  h3 {
-    margin-bottom: 0;
-    color: var(--clr-grey-5);
-    font-weight: 400;
+  h5 {
+    text-align: center;
   }
 `;
 const ErrorWrapper = styled.article`
   position: absolute;
   width: 90vw;
-  top: 0;
+  bottom: -47px;
   left: 0;
   transform: translateY(-100%);
   text-transform: capitalize;
   p {
     color: red;
     letter-spacing: var(--spacing);
+    text-align: center;
   }
 `;
 export default Search;

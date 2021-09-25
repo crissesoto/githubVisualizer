@@ -1,62 +1,37 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
-const dance = keyframes`
-  from {
-    height: 10px;
-  }
-  to {
-    height: 100%;
-  }
+const BounceAnimation = keyframes`
+  0% { margin-bottom: 0; }
+  50% { margin-bottom: 15px }
+  100% { margin-bottom: 0 }
 `;
-
-const StyledLoader = styled.div`
+const DotWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  min-height: 50vh;
-
-  .bars {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    overflow: hidden;
-    width: 100px;
-    min-width: 100px;
-    height: 50px;
-    margin: 0 auto;
-    z-index: 2;
-    position: relative;
-    left: 0;
-    right: 0;
-  }
+  height: 20vh;
 `;
-
-const StyledBar = styled.div`
+const Dot = styled.div`
+  background-color: black;
+  border-radius: 50%;
   width: 10px;
-  height: 5px;
-  margin: 0 2px;
-  background-color: var(--dark-grey);
-  animation-name: ${dance};
-  animation-duration: 400ms;
-  animation-play-state: running;
-  animation-direction: alternate;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-delay: ${props => props.delay || '0ms'};
+  height: 10px;
+  margin: 0 5px;
+  /* Animation */
+  animation: ${BounceAnimation} 0.5s linear infinite;
+  animation-delay: ${props => props.delay};
 `;
 
-const Loader = () => (
-  <StyledLoader>
-    <div className="bars">
-      <StyledBar delay="250ms" />
-      <StyledBar delay="715ms" />
-      <StyledBar delay="475ms" />
-      <StyledBar delay="25ms" />
-      <StyledBar delay="190ms" />
-    </div>
-  </StyledLoader>
-);
-
-export default Loader;
+const Loader = () => {
+    return (
+      <DotWrapper>
+        <Dot delay="0s" />
+        <Dot delay=".1s" />
+        <Dot delay=".2s" />
+        <Dot delay=".3s" />
+        <Dot delay=".4s" />
+      </DotWrapper>
+    )
+}
+export default Loader

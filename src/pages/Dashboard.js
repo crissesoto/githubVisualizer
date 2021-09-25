@@ -9,11 +9,23 @@ const Wrapper = styled.main`
 `;
 
 const Dashboard = () => {
+  const {isLoading} = useContext(GithubContext);
 
-  return (
+  if (isLoading) {
+    return (
       <Wrapper>
-        {/* <Navbar />
-        <Header />*/}
+        <Navbar />
+        <Header />
+        <Search />
+        <Loader />
+      </Wrapper>
+    ) 
+    
+  } else {
+    return (
+      <Wrapper>
+        <Navbar />
+        <Header />
         <Search />
         <Info />
         <User />
@@ -21,5 +33,15 @@ const Dashboard = () => {
       </Wrapper>
     ) 
   }
+  }
+
+  const WrapperSkeleton = styled.div`
+  padding-top: 2rem;
+  display: grid;
+  gap: 3rem 2rem;
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
 
 export default Dashboard;

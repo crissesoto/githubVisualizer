@@ -3,19 +3,24 @@ import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Navbar = () => {
-  return <h2>navbar component</h2>;
+  return (
+    <section className="section nav-section">
+      <Wrapper className="section-center">navbar component
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.nav`
   padding: 1.5rem;
-  margin-bottom: 4rem;
-  background: var(--clr-white);
+  padding-bottom: 4rem;
   text-align: center;
   display: grid;
   grid-template-columns: auto auto 100px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
+  color: var(--clr-white);
   h4 {
     margin-bottom: 0;
     font-weight: 400;

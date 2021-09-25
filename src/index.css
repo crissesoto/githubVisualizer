@@ -163,6 +163,10 @@ p {
   position: relative;
 }
 
+.nav-section {
+  background-color: #272727
+}
+
 .section-center {
   width: 90vw;
   margin: 0 auto;
