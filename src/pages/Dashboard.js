@@ -18,8 +18,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchGithubUser(user);
-    console.log(user)
-
   }, [])
 
   if (isLoading) {

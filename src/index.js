@@ -7,8 +7,6 @@ import { GithubProvider } from './context/context';
 import { Auth0Provider } from '@auth0/auth0-react';
 require('dotenv').config();
 
-console.log(process.env.REACT_APP_DOMAIN)
-
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider

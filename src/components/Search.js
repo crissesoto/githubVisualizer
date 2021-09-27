@@ -11,7 +11,6 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user)
 
     if (user) {
       searchGithubUser(user)
