@@ -20,7 +20,7 @@ A web app to visualize Github profiles with the help ofReact, Styled Components,
 ## Test app
 Login with test account as de application still in development mode until verification.
 
-Live app: <https://github-visualizer.herokuapp.com/>
+Live app: <https://github-profile-visualizer.netlify.app/>
 
 
 ## Deployment
