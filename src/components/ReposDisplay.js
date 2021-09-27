@@ -11,28 +11,28 @@ const ReposDisplay = ({data}) => {
   useEffect(() => {
 
     if (activeRange === "stars") {
-      const byStars = Object.values(repos).sort((a, b) => {
+      const byStars = Object.values(data).sort((a, b) => {
         return a.stargazers_count - b.stargazers_count;
       }).slice(-10).reverse();
 
       setRepos(byStars);
     }
     if (activeRange === "forks") {
-      const byForks = Object.values(repos).sort((a, b) => {
+      const byForks = Object.values(data).sort((a, b) => {
         return a.forks_count - b.forks_count;
       }).slice(-10).reverse();
 
       setRepos(byForks);
     }
     if (activeRange === "size") {
-      const bySize = Object.values(repos).sort((a, b) => {
+      const bySize = Object.values(data).sort((a, b) => {
         return a.size - b.size;
       }).slice(-10).reverse();
 
       setRepos(bySize);
     }
 
-}, [activeRange, repos])
+}, [activeRange, data])
     
     return (  
         <section className="section">
