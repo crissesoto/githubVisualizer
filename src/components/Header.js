@@ -10,7 +10,6 @@ import {BsCalendar} from "react-icons/bs"
 const Header = () => {
     const {githubUser} = useContext(GithubContext);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    
     return (
         <Wrapper>
             {
@@ -19,7 +18,7 @@ const Header = () => {
                     <div className="avatar"><img src={githubUser.avatar_url} alt="avatar" /></div>
                     <h1>{githubUser.name}</h1>
                     <p>{githubUser.bio}</p>
-                    <h3><Link to={githubUser.html_url} target="_blank" rel="noopener noreferrer">{`@${githubUser.login}`}</Link></h3>
+                    <h3><Link to={githubUser.html_url ? githubUser.html_url : "/"} target="_blank" rel="noopener noreferrer">{`@${githubUser.login}`}</Link></h3>
                     <div className="info">
                         <span className="info__item"><GoLocation/>{githubUser.location}</span>
                         <span className="info__item"><BsCalendar/>{new Date(githubUser.created_at).toLocaleDateString("en-BE", options)}</span>

@@ -12,8 +12,7 @@ const Wrapper = styled.main`
 const Dashboard = () => {
   const {isLoading} = useContext(GithubContext);
 
-  const { isAuthenticated, user } = useAuth0();
-  const isUser = isAuthenticated && user;
+  const { user } = useAuth0();
   const {fetchGithubUser} =  useContext(GithubContext);
 
   useEffect(() => {
