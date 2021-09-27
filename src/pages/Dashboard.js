@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchGithubUser(user);
-  }, [])
+  }, [user])
 
   if (isLoading) {
     return (

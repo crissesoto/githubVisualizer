@@ -11,28 +11,28 @@ const ReposDisplay = ({data}) => {
   useEffect(() => {
 
     if (activeRange === "stars") {
-      const byStars = Object.values(data).sort((a, b) => {
+      const byStars = Object.values(repos).sort((a, b) => {
         return a.stargazers_count - b.stargazers_count;
       }).slice(-10).reverse();
 
       setRepos(byStars);
     }
     if (activeRange === "forks") {
-      const byForks = Object.values(data).sort((a, b) => {
+      const byForks = Object.values(repos).sort((a, b) => {
         return a.forks_count - b.forks_count;
       }).slice(-10).reverse();
 
       setRepos(byForks);
     }
     if (activeRange === "size") {
-      const bySize = Object.values(data).sort((a, b) => {
+      const bySize = Object.values(repos).sort((a, b) => {
         return a.size - b.size;
       }).slice(-10).reverse();
 
       setRepos(bySize);
     }
 
-}, [activeRange])
+}, [activeRange, repos])
     
     return (  
         <section className="section">
@@ -79,7 +79,7 @@ const Item = ({name, size, language, forks_count, description, stargazers_count,
     <WrapperItem>
         <header>
             <GoRepo/>
-            <a href={html_url} target="_blank"><h4>{name}</h4></a>
+            <a href={html_url ?html_url : "/"} target="_blank" rel="noreferrer" ><h4>{name}</h4></a>
         </header>
         <p className="bio">{description || 'Description not provided'}</p>
         <div className='links'>
