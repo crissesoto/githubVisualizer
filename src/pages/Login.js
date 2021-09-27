@@ -4,6 +4,19 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import loginImg from '../images/login-img.png';
 
+const Login = () => {
+  const {loginWithRedirect} = useAuth0();
+
+  return (
+    <Wrapper>
+        <img src={loginImg} alt="github logo" height="300" width="300" />
+        <h1>Github visualizer</h1>
+        <button to="/" className="btn" onClick={() => loginWithRedirect()}>Signup / Login</button>
+    </Wrapper>
+  );
+};
+export default Login;
+
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -21,14 +34,3 @@ const Wrapper = styled.section`
     margin-bottom: 0.8rem;
   }
 `;
-
-const Login = () => {
-  return (
-    <Wrapper>
-        <img src={loginImg} alt="github logo" height="300" width="300" />
-        <h1>Github visualizer</h1>
-        <button to="/" className="btn">Login</button>
-    </Wrapper>
-  );
-};
-export default Login;

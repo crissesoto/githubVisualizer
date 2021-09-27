@@ -57,7 +57,7 @@ const ReposDisplay = ({data}) => {
                   <button
                     className={activeRange === 'size' ? 'active' : ''}
                     onClick={() => setActiveRange('size')}>
-                    Sise
+                    Size
                   </button>
                 </li>
               </StyledRangeButtons>
@@ -164,6 +164,7 @@ const StyledRangeButtons = styled.ul`
   list-style: none;
   margin: 0 0 24px 0;
   padding: 0;
+  margin-left: 30px;
 
   @media (min-width: 768px) {
     position: absolute;
@@ -187,11 +188,13 @@ const StyledRangeButtons = styled.ul`
     margin-bottom: -10px;
     &:hover,
     &:focus {
-      background-color: var(--clr-primary-1);
+      background-color: var(--clr-primary-5);
+      border-color: hsl(196deg 97% 74%);    
     }
 
     &.active {
       background-color: var(--clr-primary-5);
+      border-color: hsl(196deg 97% 74%);
     }
   }
 `;

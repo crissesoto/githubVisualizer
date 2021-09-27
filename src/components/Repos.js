@@ -8,7 +8,7 @@ const Repos = () => {
 
   const {repos} = useContext(GithubContext);
 
-  const languages = repos.reduce((total, item) => {
+  const languages = repos && repos.reduce((total, item) => {
     const { language, stargazers_count } = item;
     if (!language) return total;
     if (!total[language]) {
@@ -23,7 +23,7 @@ const Repos = () => {
     return total;
   }, {});
 
-  const mostUsed = Object.values(languages)
+  const mostUsed = languages && Object.values(languages)
     .sort((a, b) => {
       return b.value - a.value;
     })
@@ -31,7 +31,7 @@ const Repos = () => {
 
   // most stars per language
 
-  const mostPopular = Object.values(languages)
+  const mostPopular = languages && Object.values(languages)
     .sort((a, b) => {
       return b.stars - a.stars;
     })
@@ -42,7 +42,7 @@ const Repos = () => {
 
   // stars, forks
 
-  let { stars, forks } = repos.reduce(
+  let { stars, forks } = repos && repos.reduce(
     (total, item) => {
       const { stargazers_count, name, forks } = item;
       total.stars[stargazers_count] = { label: name, value: stargazers_count };
@@ -55,8 +55,8 @@ const Repos = () => {
     }
   );
 
-  stars = Object.values(stars).slice(-5).reverse();
-  forks = Object.values(forks).slice(-5).reverse();
+  stars = stars && Object.values(stars).slice(-5).reverse();
+  forks = forks && Object.values(forks).slice(-5).reverse();
   
   return (
     <section className="section">
